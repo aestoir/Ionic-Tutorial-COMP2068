@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Todo List App
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <!-- text input for new task -->
+    <ion-input
+    [(ngModel)]="inputValue"
+    label="New Task"
+    label-placement="floating"
+    fill="outline"
+    shape="round"
+    placeholder=""
+    >
+    </ion-input>
+    <br/>
+
+    <!-- display list of tasks -->
+    <ion-item *ngFor="let task of taskService.taskList; let i = index">
+      <ion-label>{{ task.taskName }}</ion-label>
+      <!-- toggleTask method is called when checkbox is clicked -->
+      <ion-checkbox slot="start" [(ngModel)]="task.status" (ionChange)="taskService.toggleTask(i)"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
+
+  <!-- action button to submit new task -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="submitInput()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <br/>
+
+</ion-content>
